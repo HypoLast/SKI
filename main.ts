@@ -167,8 +167,12 @@ function read(line:string) {
         lines.forEach(l => read(l));
     } else if (line.indexOf(":i ") == 0) {
         console.log(macros[line.split(/ +/g)[1]]);
-    } else if (line.indexOf(":m ") == 0) { 
-        options.maxIterations = parseInt(line.split(/ +/g)[1]) | 0;
+    } else if (line.indexOf(":m ") == 0) {
+        let iters:number = parseInt(line.split(/ +/g)[1]) | 0;
+        options.maxIterations = iters;
+        console.log("Max iterations set to", iters == 0 ? "infinity" : iters);
+    } else if (line == ":c") {
+        process.stdout.write("\x1Bc");
     } else if (line == ":h") {
         console.log("All combinators are left-assosiative and take exactly one argument");
         console.log(" ` is an open bracket, it is automatically closed as soon as syntactically possible");
@@ -188,6 +192,7 @@ function read(line:string) {
         console.log(" :i <symbol> - display the value for the macro <symbol>")
         console.log(" :l <filename> - load <filename>.ski and run all lines that don't begin with a #");
         console.log(" :m <number> - set the max iteration number, 0 for infinity");
+        console.log(" :c - clear the console");
         console.log(" :h - display this help");
     } else {
         execute(expand(line));
@@ -201,3 +206,5 @@ function read(line:string) {
         read(input);
     }
 }
+
+console.log("Goodbye!");
