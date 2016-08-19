@@ -32,7 +32,7 @@ function findFirstApply(input:string):[string, string, string, number]|null {
                 symbolStart = i;
                 symbolDepth = 1;
                 state = State.READ;
-            } else if (symbol.match(/S|K|I|R|[a-z]/)) {
+            } else if (symbol.match(/S|K|I|R|[a-z_]/)) {
                 if (!l) l = symbol;
                 else p = symbol;
             } else if (symbol == '.') {
@@ -139,8 +139,6 @@ function expand(input:string):string {
     return input;
 }
 
-console.log("SK(I)");
-
 function read(line:string) {
     if (line == ":s") {
         options.step = true;
@@ -198,6 +196,8 @@ function read(line:string) {
         execute(expand(line));
     }
 }
+
+console.log("SK(I)");
 
 {
     let input:string;
