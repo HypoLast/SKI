@@ -1,0 +1,4 @@
+.git/
+.vscode/
+typings/
+node_modules/
