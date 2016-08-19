@@ -142,6 +142,11 @@ function expand(input:string):string {
 function read(line:string) {
     if (line == ":s") {
         options.step = true;
+    } else if (line.indexOf(":s ") == 0) {
+        let temp = options.step;
+        options.step = true;
+        execute(expand(line.substr(":s ".length)));
+        options.step = temp;
     } else if (line == ":r") {
         options.step = false;
     } else if (line.indexOf(":d ") == 0) {
@@ -184,6 +189,7 @@ function read(line:string) {
         console.log("In addition this interpreter supports the following commands")
         console.log(" :q - quit the interpreter");
         console.log(" :s - turn on stepping, while stepping press x to stop or any key to continue");
+        console.log(" :s <value> - step through the evaluation of the given value ")
         console.log(" :r - turn off stepping");
         console.log(" :d <symbol> <value> - define a macro, macro symbols are either single upper-case characters or multiple upper case characters in <>")
         console.log("\t\t macros get completely expanded pre-execution");
