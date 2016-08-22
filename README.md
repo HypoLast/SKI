@@ -26,12 +26,12 @@ All combinators are left-assosiative and take exactly one argument
 In addition the interpreter supports the following commands
 * :q - quit the interpreter
 * \:s - turn on stepping, while stepping press x to stop or any key to continue
-* \:s <value> - step through the evaluation of the given value
+* \:s \<value\> - step through the evaluation of the given value
 * :r - turn off stepping
-* \:d <symbol> <value> - define a macro, macro symbols are either single upper-case characters or multiple upper case characters in <>. macros get completely expanded pre-execution
-* :i <symbol> - display the value for the macro <symbol>
-* :l <filename> - load <filename>.ski and run all lines that don't begin with a #
-* :m <number> - set the max iteration number, 0 for infinity
+* \:d \<symbol\> \<value\> - define a macro, macro symbols are either single upper-case characters or multiple upper case characters in \<>.\ macros get completely expanded pre-execution
+* :i \<symbol\> - display the value for the macro \<symbol\>
+* :l \<filename\> - load \<filename\>.ski and run all lines that don't begin with a #
+* :m \<number\> - set the max iteration number, 0 for infinity
 * :c - clear the console
 * :h - display this help
 
