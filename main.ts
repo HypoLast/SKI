@@ -122,8 +122,7 @@ function execute(input:string):void {
             console.log(" ~", input);
             stop = readlineSync.keyIn("", { hideEchoBack: true, mask: '' }) == "x";
         }
-        iterations ++;
-    } while(input != output && !stop && (options.maxIterations == 0 || iterations < options.maxIterations));
+    } while(input != output && !stop && (options.maxIterations == 0 || (++ iterations) < options.maxIterations));
     if (buffer) console.log(buffer);
     console.log(" =", input);
 }
@@ -167,7 +166,7 @@ function read(line:string) {
         } catch(e) {
             console.log("Error loading file");
         }
-        lines.forEach(l => read(l));
+        lines.forEach(read);
     } else if (line.indexOf(":i ") == 0) {
         console.log(macros[line.split(/ +/g)[1]]);
     } else if (line.indexOf(":m ") == 0) {
