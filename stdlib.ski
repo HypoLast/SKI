@@ -14,5 +14,5 @@
 :d N `<INC>
 # useful for IO, takes a single argument and applies itself to that argument, so <IO>.h.e.l.l.o pushes "hello" onto the buffer and returns <IO>
 :d <IO> ```S``S`KS`KI``S``S`KS``S`KKI``S`KKI``S``S`KS`KI``S``S`KS``S`KKI``S`KKI
-# `λa.λf.λx.```aa`fxx λa.λf.λx.```aa`fxx evaluates ...f(f(f(f(f(f(f(x))))))) forever
+# `λa.λf.λx.```aa`fxx λa.λf.λx.```aa`fxx evaluates f(x)(x)(x)(x)(x)(x)(x)(x)(x)(x)... forever
 :d <FOREVER> ```S``S`KS``S``S`KS``S`KK`KS``S``S`KS``S``S`KS``S`KK`KS``S``S`KS``S``S`KS``S`KK`KS``S``S`KS``S`KK`KK``S`KKI``S``S`KS``S`KK`KK``S`KKI``S``S`KS``S``S`KS``S`KK`KS``S``S`KS``S`KK`KK`KI``S`KK`KI``S`KK`KI``S``S`KS``S``S`KS``S`KK`KS``S``S`KS``S``S`KS``S`KK`KS``S``S`KS``S``S`KS``S`KK`KS``S``S`KS``S`KK`KK``S`KKI``S``S`KS``S`KK`KK``S`KKI``S``S`KS``S``S`KS``S`KK`KS``S``S`KS``S`KK`KK`KI``S`KK`KI``S`KK`KI
