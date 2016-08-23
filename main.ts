@@ -131,7 +131,14 @@ function expand(input:string):string {
     let original:string;
     do {
         original = input;
+        // get the <> macros first so we don't accidentally expand inside of them
         for (let key in macros) {
+            if (key.indexOf("<") != 0) continue;
+            input = input.replace(key, macros[key]);
+        }
+        // get the rest of the macros
+        for (let key in macros) {
+            if (key.indexOf("<") >= 0) continue;
             input = input.replace(key, macros[key]);
         }
     } while(original != input);
@@ -139,27 +146,31 @@ function expand(input:string):string {
 }
 
 function read(line:string) {
-    if (line == ":s") {
+    let lowerline = line.toLowerCase();
+    if (lowerline == ":s") {
         options.step = true;
-    } else if (line.indexOf(":s ") == 0) {
+    } else if (lowerline.indexOf(":s ") == 0) {
         let temp = options.step;
         options.step = true;
         execute(expand(line.substr(":s ".length)));
         options.step = temp;
-    } else if (line == ":r") {
+    } else if (lowerline == ":r") {
         options.step = false;
-    } else if (line.indexOf(":d ") == 0) {
+    } else if (lowerline.indexOf(":d ") == 0) {
         let args = line.split(/ +/g);
         if (args.length != 3) console.log("Invalid define");
         else if (!args[1].match(/^((?:[A-Z])|(?:<[A-Z]+>))$/)) console.log("Invalid identifier");
         else if (["S", "K", "I", "R"].indexOf(args[1]) >= 0) console.log("Can't redefine built-in");
-        else if (args[2].indexOf(args[1]) >= 0) console.log("Can't define a macro in terms of itself");
+        // else if (args[2].indexOf(args[1]) >= 0) console.log("Can't define a macro in terms of itself"); // this is broken right now, for example :d A <AAA> won't work
+                                                                                                           // it doesn't event protect against anything currently because you could just
+                                                                                                           // :d A B
+                                                                                                           // :d B A
         else {
             macros[args[1]] = args[2];
             console.log("Defined symbol", args[1]);
         }
-    } else if (line.indexOf(":l ") == 0) {
-        let args = line.split(/ +/g);
+    } else if (lowerline.indexOf(":l ") == 0) {
+        let args = lowerline.split(/ +/g);
         let lines:string[] = [];
         try {
             lines = fs.readFileSync(args[1] + ".ski").toString().split(/\r?\n/g).filter(e => e.charAt(0) != "#");
@@ -167,15 +178,15 @@ function read(line:string) {
             console.log("Error loading file");
         }
         lines.forEach(read);
-    } else if (line.indexOf(":i ") == 0) {
+    } else if (lowerline.indexOf(":i ") == 0) {
         console.log(macros[line.split(/ +/g)[1]]);
-    } else if (line.indexOf(":m ") == 0) {
+    } else if (lowerline.indexOf(":m ") == 0) {
         let iters:number = parseInt(line.split(/ +/g)[1]) | 0;
         options.maxIterations = iters;
         console.log("Max iterations set to", iters == 0 ? "infinity" : iters);
-    } else if (line == ":c") {
+    } else if (lowerline == ":c") {
         process.stdout.write("\x1Bc");
-    } else if (line == ":h") {
+    } else if (lowerline == ":h") {
         console.log("All combinators are left-assosiative and take exactly one argument");
         console.log(" ` is an open bracket, it is automatically closed as soon as syntactically possible");
         console.log(" S is the S-combinator: λx.λy.λz.xz(yz)");

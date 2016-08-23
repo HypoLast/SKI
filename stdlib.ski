@@ -1,4 +1,18 @@
-# λxy.yx
+# λx.λy.`yx flip function
 :d F ``S`K`SIK
-# λh.λx.(hh)λh.λx.(hh) maybe? It's a black hole, takes itself and an parameter and returns itself: f = λy.f
+# `λh.λx.`hh λh.λx.`hh black hole woo!
 :d V ```S``S`KSKK``S``S`KSKK
+# λf.λg.λx.`f`gx compose f.g on x
+:d <COMP> ``S``S`KS``S``S`KS``S`KK`KS``S``S`KS``S`KK`KK``S`KKI``S``S`KS``S``S`KS``S`KK`KS``S``S`KS``S`KK`KK`KI``S`KK`KI
+# λf.``<COMP>ff compose f.f on x, call f twice
+:d <TWICE> ``S``S`K<COMP>II
+# church number zero
+:d Z `KI
+# increment the given church number
+:d <INC> `S``S`KSK
+# convenience right-associative incrementer
+:d N `<INC>
+# useful for IO, takes a single argument and applies itself to that argument, so <IO>.h.e.l.l.o pushes "hello" onto the buffer and returns <IO>
+:d <IO> ```S``S`KS`KI``S``S`KS``S`KKI``S`KKI``S``S`KS`KI``S``S`KS``S`KKI``S`KKI
+# `λa.λf.λx.```aa`fxx λa.λf.λx.```aa`fxx evaluates ...f(f(f(f(f(f(f(x))))))) forever
+:d <FOREVER> ```S``S`KS``S``S`KS``S`KK`KS``S``S`KS``S``S`KS``S`KK`KS``S``S`KS``S``S`KS``S`KK`KS``S``S`KS``S`KK`KK``S`KKI``S``S`KS``S`KK`KK``S`KKI``S``S`KS``S``S`KS``S`KK`KS``S``S`KS``S`KK`KK`KI``S`KK`KI``S`KK`KI``S``S`KS``S``S`KS``S`KK`KS``S``S`KS``S``S`KS``S`KK`KS``S``S`KS``S``S`KS``S`KK`KS``S``S`KS``S`KK`KK``S`KKI``S``S`KS``S`KK`KK``S`KKI``S``S`KS``S``S`KS``S`KK`KS``S``S`KS``S`KK`KK`KI``S`KK`KI``S`KK`KI
