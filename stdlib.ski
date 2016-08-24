@@ -1,18 +1,53 @@
 # λx.λy.`yx flip function
-:d F ``S`K`SIK
+:d <FLIP> ``S`K`SIK
+#
 # `λh.λx.`hh λh.λx.`hh black hole woo!
 :d V ```S``S`KSKK``S``S`KSKK
+#
 # λf.λg.λx.`f`gx compose f.g on x
 :d <COMP> ``S``S`KS``S``S`KS``S`KK`KS``S``S`KS``S`KK`KK``S`KKI``S``S`KS``S``S`KS``S`KK`KS``S``S`KS``S`KK`KK`KI``S`KK`KI
+#
 # λf.``<COMP>ff compose f.f on x, call f twice
 :d <TWICE> ``S``S`K<COMP>II
+#
 # church number zero
 :d Z `KI
+#
 # increment the given church number
 :d <INC> `S``S`KSK
+#
 # convenience right-associative incrementer
 :d N `<INC>
+#
+# decrement the given church number. very very highly unoptimized
+:d <DEC> ``S``S`KS``S``S`KS``S`KK`KS``S``S`KS``S``S`KS``S`KK`KS``S``S`KS``S``S`KS``S`KK`KS``S``S`KS``S`KK`KK``S`KKI``S``S`KS``S``S`KS``S`KK`KS``S``S`KS``S``S`KS``S`KK`KS``S``S`KS``S`KK`KK``S`KK`KS``S``S`KS``S``S`KS``S`KK`KS``S``S`KS``S``S`KS``S`KK`KS``S``S`KS``S`KK`KK``S`KK`KS``S``S`KS``S``S`KS``S`KK`KS``S``S`KS``S`KK`KK``S`KK`KK``S``S`KS``S`KK`KK``S`KK`KS``S``S`KS``S``S`KS``S`KK`KS``S``S`KS``S`KK`KK``S`KK`KK``S``S`KS``S`KK`KK``S`KK`KI``S``S`KS``S``S`KS``S`KK`KS``S``S`KS``S``S`KS``S`KK`KS``S``S`KS``S`KK`KK``S`KK`KS``S``S`KS``S``S`KS``S`KK`KS``S``S`KS``S``S`KS``S`KK`KS``S``S`KS``S`KK`KK``S`KK`KS``S``S`KS``S``S`KS``S`KK`KS``S``S`KS``S`KK`KK``S`KK`KK``S``S`KS``S`KK`KK``S`KK`KS``S``S`KS``S``S`KS``S`KK`KS``S``S`KS``S``S`KS``S`KK`KS``S``S`KS``S`KK`KK``S`KK`KS``S``S`KS``S``S`KS``S`KK`KS``S``S`KS``S`KK`KK``S`KK`KK``S``S`KS``S`KK`KK``S`KK`KK``S``S`KS``S`KK`KK``S`KK`KI``S``S`KS``S``S`KS``S`KK`KS``S``S`KS``S``S`KS``S`KK`KS``S``S`KS``S`KK`KK``S`KK`KS``S``S`KS``S``S`KS``S`KK`KS``S``S`KS``S`KK`KK``S`KK`KK``S``S`KS``S`KK`KK``S`KK`KK``S``S`KS``S``S`KS``S`KK`KS``S``S`KS``S`KK`KK``S`KK`KK``S``S`KS``S`KK`KK`KI``S``S`KS``S``S`KS``S`KK`KS``S``S`KS``S`KK`KK``S`KK`KK``S`KK`KI``S``S`KS``S`KK`KK``S`KK`KI
+#
 # useful for IO, takes a single argument and applies itself to that argument, so <IO>.h.e.l.l.o pushes "hello" onto the buffer and returns <IO>
 :d <IO> ```S``S`KS`KI``S``S`KS``S`KKI``S`KKI``S``S`KS`KI``S``S`KS``S`KKI``S`KKI
+#
 # `λa.λf.λx.```aa`fxx λa.λf.λx.```aa`fxx evaluates f(x)(x)(x)(x)(x)(x)(x)(x)(x)(x)... forever
 :d <FOREVER> ```S``S`KS``S``S`KS``S`KK`KS``S``S`KS``S``S`KS``S`KK`KS``S``S`KS``S``S`KS``S`KK`KS``S``S`KS``S`KK`KK``S`KKI``S``S`KS``S`KK`KK``S`KKI``S``S`KS``S``S`KS``S`KK`KS``S``S`KS``S`KK`KK`KI``S`KK`KI``S`KK`KI``S``S`KS``S``S`KS``S`KK`KS``S``S`KS``S``S`KS``S`KK`KS``S``S`KS``S``S`KS``S`KK`KS``S``S`KS``S`KK`KK``S`KKI``S``S`KS``S`KK`KK``S`KKI``S``S`KS``S``S`KS``S`KK`KS``S``S`KS``S`KK`KK`KI``S`KK`KI``S`KK`KI
+#
+# add two church numbers
+:d <SUM> ``SI`K`S``S`KSK
+#
+# multiply two church numbers
+:d <PROD> ``S`KSK
+#
+# raise the second curch number to the power of the first
+:d <POW> I
+#
+# print a number as a line of asterisks and return that number
+:d <NIO> ``S`KR``S``SI`K.*I
+#
+# applys a function to itself, useful for embedding recursion
+:d <SAPPLY> ``SII
+#
+# logical true, returns the first argument
+:d T K
+#
+# logical false, returns the second argument
+:d F `KI
+#
+# true if the given number is equal to zero, false otherwise λn.``n`KFT
+:d <EQZ> ``S``SI``S`KK`KF`KT

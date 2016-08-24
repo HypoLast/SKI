@@ -8,7 +8,7 @@ var options = {
     maxIterations: 0
 };
 var macros = {};
-readlineSync.setDefaultOptions({ prompt: "> " });
+readlineSync.setDefaultOptions({ prompt: "> ", bufferSize: 4096 });
 function findFirstApply(input) {
     var State;
     (function (State) {
@@ -153,13 +153,15 @@ function expand(input) {
         original = input;
         // get the <> macros first so we don't accidentally expand inside of them
         for (var key in macros) {
-            if (key.indexOf("<") != 0)
+            if (key.charAt(0) != "<")
                 continue;
             input = input.replace(key, macros[key]);
         }
+        if (original != input)
+            continue;
         // get the rest of the macros
         for (var key in macros) {
-            if (key.indexOf("<") >= 0)
+            if (key.charAt(0) == "<")
                 continue;
             input = input.replace(key, macros[key]);
         }

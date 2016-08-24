@@ -9,7 +9,7 @@ let options = {
     maxIterations: 0
 }
 let macros:{ [macro:string]:string } = {};
-readlineSync.setDefaultOptions({ prompt: "> " });
+readlineSync.setDefaultOptions({ prompt: "> ", bufferSize: 4096 });
 
 function findFirstApply(input:string):[string, string, string, number]|null {
     enum State {
@@ -133,12 +133,13 @@ function expand(input:string):string {
         original = input;
         // get the <> macros first so we don't accidentally expand inside of them
         for (let key in macros) {
-            if (key.indexOf("<") != 0) continue;
+            if (key.charAt(0) != "<") continue;
             input = input.replace(key, macros[key]);
         }
+        if (original != input) continue;
         // get the rest of the macros
         for (let key in macros) {
-            if (key.indexOf("<") >= 0) continue;
+            if (key.charAt(0) == "<") continue;
             input = input.replace(key, macros[key]);
         }
     } while(original != input);

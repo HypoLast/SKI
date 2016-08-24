@@ -1,0 +1,5 @@
+# count down from the given number, outputting the number each iteration, down to zero then stop
+# `<SAPPLY>^y.^x.````<EQZ>xI`yy`<DEC>`<NIO>x
+:l stdlib
+:d <COUNTDOWN> `<SAPPLY>``S``S`KS``S``S`KS``S``S`KS``S``S`KS``S`KK`K<EQZ>`KI``S`KK`KI``S``S`KS``S`KKI``S`KKI``S``S`KS``S`KK`K<DEC>``S``S`KS``S`KK`K<NIO>`KI
+<COUNTDOWN>NNNNNZ
