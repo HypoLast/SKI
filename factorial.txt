@@ -7,7 +7,7 @@ self-apply for recursion, (yy) becomes the reference to the self function
 a is the accumulator and x is the current number, to do tail recursion. This code is effectively
 
 def fact(a, x) {
-	if (x - 1 == 0) a * x;
+	if (x - 1 == 0) a;
 	else fact(a * x, x - 1);
 }(1)
 
