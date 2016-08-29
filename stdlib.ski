@@ -51,3 +51,6 @@
 #
 # true if the given number is equal to zero, false otherwise λn.``n`KFT
 :d <EQZ> ``S``SI``S`KK`KF`KT
+#
+# factorial function ``<SAPPLY>^y.^a.^x. `````<EQZ>`<DEC>x`K`Ka`yy``<PROD>ax`<DEC>x  NZ
+:d <FACT> ``<SAPPLY>``S``S`KS``S``S`KS``S`KK`KS``S``S`KS``S``S`KS``S`KK`KS``S``S`KS``S``S`KS``S`KK`KS``S``S`KS``S``S`KS``S`KK`KS``S``S`KS``S``S`KS``S`KK`KS``S``S`KS``S`KK`KK``S`KK`K<EQZ>``S``S`KS``S``S`KS``S`KK`KS``S``S`KS``S`KK`KK``S`KK`K<DEC>``S`KK`KI``S``S`KS``S``S`KS``S`KK`KS``S``S`KS``S`KK`KK``S`KK`KK``S``S`KS``S``S`KS``S`KK`KS``S``S`KS``S`KK`KK``S`KK`KK``S``S`KS``S`KK`KK`KI``S``S`KS``S``S`KS``S`KK`KS``S``S`KS``S`KK`KK``S`KKI``S``S`KS``S`KK`KK``S`KKI``S``S`KS``S``S`KS``S`KK`KS``S``S`KS``S``S`KS``S`KK`KS``S``S`KS``S`KK`KK``S`KK`K<PROD>``S``S`KS``S`KK`KK`KI``S`KK`KI``S``S`KS``S``S`KS``S`KK`KS``S``S`KS``S`KK`KK``S`KK`K<DEC>``S`KK`KINZ
