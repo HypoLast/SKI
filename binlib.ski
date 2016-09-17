@@ -1,0 +1,10 @@
+:l bool
+# \a.\b.\z.``zab
+:d <PAIR> ``S``S`KS``S`KK``S`KS``S`K`SIK`KK
+:d <FIRST> K
+:d <SECOND> `KI
+# \p.`p\x.\y.x
+:d A ``SI`KK
+# \p.`p\x.\y.y
+:d B ``SI`K`KI
+:d <EMPTY> ``<PAIR>TT

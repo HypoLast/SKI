@@ -1,0 +1,6 @@
+#
+# logical true, returns the first argument
+:d T K
+#
+# logical false, returns the second argument
+:d F `KI

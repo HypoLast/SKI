@@ -1,3 +1,4 @@
+:l bool
 # λx.λy.`yx flip function
 :d <FLIP> ``S`K`SIK
 #
@@ -5,7 +6,7 @@
 :d V ```S``S`KSKK``S``S`KSKK
 #
 # λf.λg.λx.`f`gx compose f.g on x
-:d <COMP> ``S``S`KS``S``S`KS``S`KK`KS``S``S`KS``S`KK`KK``S`KKI``S``S`KS``S``S`KS``S`KK`KS``S``S`KS``S`KK`KK`KI``S`KK`KI
+:d <COMP> ``S`KSK
 #
 # λf.``<COMP>ff compose f.f on x, call f twice
 :d <TWICE> ``S``S`K<COMP>II
@@ -42,12 +43,6 @@
 #
 # applys a function to itself, useful for embedding recursion
 :d <SAPPLY> ``SII
-#
-# logical true, returns the first argument
-:d T K
-#
-# logical false, returns the second argument
-:d F `KI
 #
 # true if the given number is equal to zero, false otherwise λn.``n`KFT
 :d <EQZ> ``S``SI``S`KK`KF`KT
